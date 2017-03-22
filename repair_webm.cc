@@ -7,6 +7,7 @@
 // be found in the AUTHORS file in the root of the source tree.
 #include <stdint.h>
 
+
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
@@ -78,6 +79,11 @@ void Usage() {
 extern "C" {
 int repair(int argc, char* argv[]);
 
+#include <emscripten.h>
+
+EMSCRIPTEN_KEEPALIVE int saySeven() { return 7; }
+
+EMSCRIPTEN_KEEPALIVE
 int repairFile(char* inputFile, char* outputFile) {
   char* argv[] = {inputFile, outputFile, NULL};
   return repair(2, argv);
