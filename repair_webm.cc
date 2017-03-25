@@ -7,6 +7,7 @@
 // be found in the AUTHORS file in the root of the source tree.
 #include <stdint.h>
 
+#include <emscripten.h>
 
 #include <cstdio>
 #include <cstdlib>
@@ -79,15 +80,24 @@ void Usage() {
 extern "C" {
 int repair(int argc, char* argv[]);
 
-#include <emscripten.h>
+int saySeven() { return 7; }
 
-EMSCRIPTEN_KEEPALIVE int saySeven() { return 7; }
-
-EMSCRIPTEN_KEEPALIVE
 int repairFile(char* inputFile, char* outputFile) {
   char* argv[] = {inputFile, outputFile, NULL};
   return repair(2, argv);
 }
+
+int repairMegaBlob(char* inBlobUrl, char* outBlobUrl) {
+  char inFileName[] = "/input.webm";
+  emscripten_wget(inBlobUrl, inFileName);
+
+  char outFileName[] = "/output.webm";
+
+  char* argv[] = {inFileName, outFileName, NULL};
+  return repair(2, argv);
+}
+
+
 
 }
 

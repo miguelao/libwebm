@@ -13,7 +13,8 @@ mkvparser/mkv*.cc \
 common/file_util.cc \
 common/hdr_util.cc \
 --post-js post.js \
--s EXPORTED_FUNCTIONS=\"['_repairFile']\" \
+-s EXPORTED_FUNCTIONS=\"['_repairFile','_repairMegaBlob','_saySeven']\" \
+-s ASYNCIFY=1 \
 "
 #-s MODULARIZE=1 -s EXPORT_NAME=\"'LibWebm'\" \
 

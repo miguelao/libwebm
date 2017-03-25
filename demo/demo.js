@@ -6,9 +6,14 @@ var repair =  libwebm.cwrap('repairFile', 'number', ['string', 'string']);
 repair('/working/input.webm', '/working/output.webm')
 
 
-/*
 
 var blob = new Blob(['blob data']);
+var blobUrl = URL.createObjectURL(blob);
+
+var repair2 =  libwebm.cwrap('repairMegaBlob', 'number', ['string', 'string']);
+repair2(blobUrl, 'blabla')
+
+/*
 //FS.mkdir('/working');
 //FS.mount(WORKERFS, {
 //  blobs: [{ name: 'input.webm', data: blob }],
